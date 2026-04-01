@@ -16,5 +16,5 @@ This repository contains MATLAB implementations for model evaluation in a Bayesi
 
 ## Notes
 
-- This project is based on coursework.
+- This project was completed during a research internship focusing on computational modeling.
 - Original datasets and provided materials are not included.
