@@ -2,18 +2,18 @@
 clear all; 
 load('nll_candidmodels.mat'); 
 
-% 설정 
+% Configuration
 n      = 5096;
 num_k  = [6,9,5,2,1];   
 NP     = size(nll_pop,1);
 
-% 칼럼 개별 추출
+% Extract columns for each model
 World_model_nll_column  = nll_pop(:,1);
 Hybrid_model_nll_column  = nll_pop(:,2);
 Value_model_nll_column  = nll_pop(:,3);
 Fixed_model_nll_column = nll_pop(:,4);
 
-% AICc 계산
+% Compute AICc values
 AICc_all = nan(NP,5);
 AICc_all(:,1) = evaluate_models(World_model_nll_column,  num_k(1), n); 
 AICc_all(:,2) = evaluate_models(Hybrid_model_nll_column, num_k(2), n); 
@@ -21,7 +21,7 @@ AICc_all(:,3) = evaluate_models(Value_model_nll_column,  num_k(3), n);
 AICc_all(:,4) = evaluate_models(Fixed_model_nll_column,  num_k(4), n);
 AICc_all(:,5) = evaluate_models(nll_pop(:,5),            num_k(5), n); 
 
-% ΔAICc 계산
+% Compute AICc values
 AICc_base = AICc_all(:,5);       
 Delta = AICc_all - AICc_all(:,5);
 World_AICc_Delta_col  = -(AICc_all(:,1) - AICc_base);
@@ -29,7 +29,7 @@ Hybrid_AICc_Delta_col = -(AICc_all(:,2) - AICc_base);
 Value_AICc_Delta_col  = -(AICc_all(:,3) - AICc_base);
 Fixed_AICc_Delta_col  = -(AICc_all(:,4) - AICc_base);
 
-% 요약 및 플로팅
+% Summary statistics and plotting
 order = [1 2 3 4];
 plotLabels = {'Fixed','Value','World','Hybrid'};
 
